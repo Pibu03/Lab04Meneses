@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.lab04_meneses.ui.theme.Lab04MenesesTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,10 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Lab04MenesesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MainContent(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +29,66 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun MainContent(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Greeting(name = "Android")
+        Spacer(modifier = Modifier.height(16.dp))
+        Counter()
+        Spacer(modifier = Modifier.height(16.dp))
+        UserInputField()
+    }
+}
+
+@Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "Hola $name!",
         modifier = modifier
+    )
+}
+
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Button(onClick = { count++ }) {
+            Text(text = "Incrementar")
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = "Cuenta: $count")
+    }
+}
+
+@Composable
+fun UserInputField() {
+    var text by remember { mutableStateOf("") }
+    BasicTextField(
+        value = text,
+        onValueChange = { text = it },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        decorationBox = { innerTextField ->
+            Box(modifier = Modifier.padding(8.dp)) {
+                if (text.isEmpty()) {
+                    Text("Ingrese su texto aquí", color = androidx.compose.ui.graphics.Color.Gray)
+                }
+                innerTextField()
+            }
+        }
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainContentPreview() {
     Lab04MenesesTheme {
-        Greeting("Android")
+        MainContent()
     }
 }
