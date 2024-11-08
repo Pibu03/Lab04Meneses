@@ -5,15 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.lab04_meneses.ui.theme.Lab04MenesesTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,7 +58,11 @@ fun MainContent(modifier: Modifier = Modifier) {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hola $name!",
-        modifier = modifier
+        modifier = modifier,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color.Blue,
+        textAlign = TextAlign.Center
     )
 }
 
@@ -61,11 +70,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun Counter() {
     var count by remember { mutableStateOf(0) }
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Button(onClick = { count++ }) {
-            Text(text = "Incrementar")
+        Button(
+            onClick = { count++ },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Green)
+        ) {
+            Text(text = "Incrementar", color = Color.White)
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = "Cuenta: $count")
+        Text(
+            text = "Cuenta: $count",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black
+        )
     }
 }
 
@@ -77,11 +94,13 @@ fun UserInputField() {
         onValueChange = { text = it },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .background(Color.LightGray, shape = MaterialTheme.shapes.small)
+            .padding(16.dp),
         decorationBox = { innerTextField ->
             Box(modifier = Modifier.padding(8.dp)) {
                 if (text.isEmpty()) {
-                    Text("Ingrese su texto aquí", color = androidx.compose.ui.graphics.Color.Gray)
+                    Text("Ingrese su texto aquí", color = Color.Gray)
                 }
                 innerTextField()
             }
@@ -101,6 +120,7 @@ fun ImageGallery() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .background(Color.LightGray)
         )
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
@@ -108,6 +128,7 @@ fun ImageGallery() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .background(Color.Cyan)
         )
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
@@ -115,6 +136,7 @@ fun ImageGallery() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .background(Color.Blue)
         )
     }
 }
