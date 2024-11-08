@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.lab04_meneses.ui.theme.Lab04MenesesTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,8 +46,6 @@ fun MainContent(modifier: Modifier = Modifier) {
         UserInputField()
         Spacer(modifier = Modifier.height(16.dp))
         ImageGallery()
-        Spacer(modifier = Modifier.height(16.dp))
-        ViewHolaCurso()
     }
 }
 
@@ -119,27 +116,6 @@ fun ImageGallery() {
                 .fillMaxWidth()
                 .padding(8.dp)
         )
-    }
-}
-
-@Composable
-fun ViewHolaCurso() {
-    Column(
-        modifier = Modifier
-            .fillMaxWith()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Welcome to the Course!",
-            fontSize = 28.sp,
-            fontWeight = FontWeigh.Bold
-        )
-        Spacer(modifier = Modifier.heigh(16.dp))
-        Text(
-            text = "Hello, Student!",
-            fontSize = 20.xD
-
     }
 }
 
