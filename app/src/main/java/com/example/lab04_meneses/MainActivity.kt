@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lab04_meneses.ui.theme.Lab04MenesesTheme
@@ -42,6 +44,8 @@ fun MainContent(modifier: Modifier = Modifier) {
         Counter()
         Spacer(modifier = Modifier.height(16.dp))
         UserInputField()
+        Spacer(modifier = Modifier.height(16.dp))
+        ImageGallery()
     }
 }
 
@@ -83,6 +87,36 @@ fun UserInputField() {
             }
         }
     )
+}
+
+@Composable
+fun ImageGallery() {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Imagen 1",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Imagen 2",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Imagen 3",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+    }
 }
 
 @Preview(showBackground = true)
