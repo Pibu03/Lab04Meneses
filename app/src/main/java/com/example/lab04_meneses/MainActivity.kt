@@ -5,15 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.lab04_meneses.ui.theme.Lab04MenesesTheme
 
 class MainActivity : ComponentActivity() {
@@ -77,18 +81,19 @@ fun UserInputField() {
         onValueChange = { text = it },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .background(Color.Cyan, shape = MaterialTheme.shapes.small)
+            .padding(16.dp),
         decorationBox = { innerTextField ->
             Box(modifier = Modifier.padding(8.dp)) {
                 if (text.isEmpty()) {
-                    Text("Ingrese su texto aquí", color = androidx.compose.ui.graphics.Color.Gray)
+                    Text("Ingrese su texto aquí", color = Color.DarkGray, fontSize = 18.sp, fontWeight = FontWeight.Medium)
                 }
                 innerTextField()
             }
         }
     )
 }
-
 @Composable
 fun ImageGallery() {
     Column(
